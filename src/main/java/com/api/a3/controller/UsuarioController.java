@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.a3.dto.ExercicioDTO;
+import com.api.a3.dto.PerfilDTO;
 import com.api.a3.dto.UsuarioDTO;
 import com.api.a3.repository.ExercicioRepository;
 import com.api.a3.services.ExercicioService;
+import com.api.a3.services.PerfilService;
 import com.api.a3.services.UsuarioService;
 
 import jakarta.websocket.server.PathParam;
@@ -26,14 +28,13 @@ public class UsuarioController {
 	
 	@Autowired
 	UsuarioService service;
+	@Autowired
+	PerfilService perfilservice;
 
 	@PostMapping
-	public ResponseEntity<String> cadastrarUsuario (@RequestBody UsuarioDTO dto){
-		service.cadastrarUsuario(dto);
-		if(dto != null) {
+	public ResponseEntity<String> cadastrarUsuario (@RequestBody UsuarioDTO dto , PerfilDTO perfil){
+		service.cadastrarUsuario(dto,perfil);
 			return ResponseEntity.ok("Cadastrado com sucesso !");
-		}
-		return null;
 	}
 	
 	@GetMapping
@@ -53,5 +54,16 @@ public class UsuarioController {
 			return ResponseEntity.ok("Usuario deletado");
 		}
 		return null;
+	}
+	
+	@GetMapping("/perfil")
+	public ResponseEntity<List<PerfilDTO>> listarPerfils (){
+		return ResponseEntity.ok(perfilservice.listarPerfis());
+	}
+	
+	@PostMapping("/perfil")
+	public ResponseEntity<String> cadastrarPerfil (@RequestBody PerfilDTO dto){
+		perfilservice.cadastrarPerfil(dto);
+		return ResponseEntity.ok("Cadastro de perfil realizado.");
 	}
 }

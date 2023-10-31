@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.api.a3.dto.ExercicioDTO;
+import com.api.a3.dto.PerfilDTO;
 import com.api.a3.dto.UsuarioDTO;
 import com.api.a3.model.Exercicio;
 import com.api.a3.model.Usuario;
@@ -21,10 +22,18 @@ public class UsuarioService {
 
 	@Autowired
 	UsuarioRepository repository;
+	@Autowired
+	PerfilService perfilservice;
 	
 	//Cadastrar o usuário
-	public void cadastrarUsuario (UsuarioDTO dto) {
+	public void cadastrarUsuario (UsuarioDTO dto , PerfilDTO perfil) {
+	if(dto != null && perfil != null) {
 	repository.save(Usuario.convert(dto));
+	perfilservice.cadastrarPerfil(perfil);
+	}else{
+		System.out.println("Insira , nome , sobrenome , email , usuario , senha ");
+	}
+	
 	}
 	
 	//Listar todos usuários

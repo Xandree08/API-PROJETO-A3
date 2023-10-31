@@ -17,7 +17,7 @@ public class ExercicioDTO {
 
 	private Long id;
 	private String exercicio;
-	private String descricao;
+	private String videoUri;
 	private Categoria categoria;
 	
 	
@@ -25,7 +25,7 @@ public class ExercicioDTO {
 		ExercicioDTO dto = new ExercicioDTO();
 		
 		dto.setCategoria(ex.getCategoria());
-		dto.setDescricao(ex.getDescricao());
+		dto.setVideoUri(ex.getVideoUri());
 		dto.setExercicio(ex.getExercicio());
 		dto.setId(ex.getId());
 		return dto;

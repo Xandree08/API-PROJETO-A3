@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,7 +23,9 @@ public class Exercicio {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String exercicio;
-	private String descricao;
+	private String videoUri;
+	
+	@OneToOne
 	private Categoria categoria;
 	
 	
@@ -30,7 +33,7 @@ public class Exercicio {
 		
 		Exercicio ex = new Exercicio();
 		ex.setCategoria(dto.getCategoria());
-		ex.setDescricao(dto.getDescricao());
+		ex.setVideoUri(dto.getVideoUri());
 		ex.setExercicio(dto.getExercicio());
 		ex.setId(dto.getId());
 		

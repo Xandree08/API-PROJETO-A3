@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.api.a3.dto.CategoriaDTO;
 import com.api.a3.dto.ExercicioDTO;
 import com.api.a3.model.Exercicio;
 import com.api.a3.repository.ExercicioRepository;
@@ -25,9 +26,7 @@ public class ExercicioService {
 	}
 	// Cadastrar um exercicio
 	public void cadastrarExercicio (ExercicioDTO dto) {
-		if(dto.getCategoria().getCategoria() != null) {
 	    repository.save(Exercicio.convert(dto));
-		}
 	}
 	//Listar exercicio por id
 	public ExercicioDTO buscarExercicio (Long id) {
@@ -44,5 +43,6 @@ public class ExercicioService {
 		repository.deleteById(id);
 		}
 	}
+	
 
 }
